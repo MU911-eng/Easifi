@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,viewport-fit=cover">
-<meta name="description" content="Wheel alignment, brake services, suspension and Dunlop tyre fitment in Soshanguve. Fast, honest and precise automotive services in Soshanguve.">
+<meta name="description" content="Wheel alignment, brake services, suspension and tyre fitment in Soshanguve. Fast, honest and precise automotive services in Soshanguve.">
 <title>Easifix Fitment Centre | Wheel Alignment, Tyres & Brakes | Soshanguve</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,22 +140,6 @@ header.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.1)}
 .service-time{font-size:0.68rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:0.1em}
 .service-link{font-family:var(--ff-heading);font-size:0.7rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--yellow-dark);display:flex;align-items:center;gap:4px;transition:gap var(--tr);min-height:44px;padding:8px 0;touch-action:manipulation}
 
-/* DUNLOP */
-#dunlop{background:var(--bg-alt)}
-.dunlop-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,5vw,68px);align-items:center}
-.dunlop-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
-.dunlop-card-header{background:#1c1917;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.dunlop-logo-img{height:30px;width:auto;filter:brightness(0) invert(1);max-width:130px}
-.dunlop-partner-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:4px 10px;font-family:var(--ff-heading);font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,.82);white-space:nowrap}
-.dunlop-partner-badge::before{content:'';width:5px;height:5px;background:#e3002c;border-radius:50%;flex-shrink:0}
-.dunlop-card-body{padding:20px 22px}
-.dunlop-tyre-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.dunlop-tyre{padding:12px 14px;background:var(--bg-alt);border:1.5px solid var(--border);border-radius:var(--radius-md);transition:border-color var(--tr),background var(--tr)}
-@media(hover:hover){.dunlop-tyre:hover{border-color:#e3002c;background:#fff5f6}}
-.dunlop-tyre-cat{font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#e3002c;margin-bottom:3px}
-.dunlop-tyre-name{font-family:var(--ff-heading);font-size:0.88rem;font-weight:800;color:var(--text);margin-bottom:2px}
-.dunlop-tyre-desc{font-size:0.72rem;color:var(--text-mid)}
-
 /* WHY US */
 #why{background:var(--bg-alt)}
 .why-header{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,52px);align-items:end;margin-bottom:clamp(26px,4vw,44px)}
@@ -235,6 +219,131 @@ header.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.1)}
 .hours-list .day{font-weight:600;color:var(--text)}
 .open-badge{display:inline-flex;align-items:center;gap:5px;background:#f0fdf4;border:1.5px solid #bbf7d0;color:#16a34a;font-family:var(--ff-heading);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border-radius:99px;padding:4px 10px;margin-top:10px}
 .open-badge::before{content:'';width:5px;height:5px;background:#22c55e;border-radius:50%;animation:blink 2s ease infinite}
+
+/* ── SCROLL OFFSET — accounts for sticky header + top bar ── */
+#hero,#services,#why,#reviews,#book {
+  scroll-margin-top: 64px;
+}
+@media(max-width:768px){
+  #hero,#services,#why,#reviews,#book {
+    scroll-margin-top: 58px;
+  }
+}
+
+
+/* ── QUOTE MODAL ─────────────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(28,25,23,.75);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  z-index:800;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;visibility:hidden;
+  transition:opacity .25s ease,visibility .25s ease;
+}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal-box{
+  background:#fff;
+  border-radius:var(--radius-lg);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  width:100%;max-width:480px;
+  max-height:90vh;
+  overflow-y:auto;
+  transform:translateY(24px);
+  transition:transform .28s ease;
+  position:relative;
+}
+.modal-overlay.open .modal-box{transform:translateY(0)}
+.modal-header{
+  background:#1c1917;
+  padding:20px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  position:sticky;top:0;z-index:1;
+  border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+}
+.modal-header h3{
+  font-family:var(--ff-heading);
+  font-size:1.1rem;font-weight:800;color:#fff;
+}
+.modal-service-tag{
+  font-family:var(--ff-heading);
+  font-size:0.65rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--yellow);
+  margin-top:3px;
+}
+.modal-close-btn{
+  width:36px;height:36px;min-width:36px;
+  background:rgba(255,255,255,.1);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.7);
+  font-size:1.1rem;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  transition:background var(--tr);
+  flex-shrink:0;
+}
+.modal-close-btn:active{background:rgba(255,255,255,.2)}
+@media(hover:hover){.modal-close-btn:hover{background:rgba(255,255,255,.2)}}
+.modal-body{padding:24px}
+.modal-wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;padding:14px;min-height:50px;
+  background:#25D366;color:#fff;
+  font-family:var(--ff-heading);font-weight:700;
+  font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;
+  border-radius:var(--radius);border:none;
+  cursor:pointer;
+  transition:background var(--tr);
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  margin-bottom:12px;
+}
+.modal-wa-btn:active{background:#1db954}
+@media(hover:hover){.modal-wa-btn:hover{background:#1db954;box-shadow:0 4px 12px rgba(37,211,102,.3)}}
+.modal-divider{
+  display:flex;align-items:center;gap:10px;
+  margin:16px 0;
+  font-size:0.72rem;font-weight:600;
+  color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase;
+}
+.modal-divider::before,.modal-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.quote-success{display:none;text-align:center;padding:20px}
+.quote-success.show{display:block}
+.quote-success-icon{font-size:2.4rem;margin-bottom:10px}
+.quote-success h4{font-family:var(--ff-heading);font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:6px}
+.quote-success p{font-size:0.84rem;color:var(--text-mid)}
+
+/* ── GET QUOTE button on service cards ──────────────── */
+.service-footer{
+  display:flex;align-items:center;
+  justify-content:space-between;
+  padding-top:14px;border-top:1px solid var(--border);
+  gap:8px;flex-wrap:wrap;
+}
+.quote-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--yellow);color:#1c1917;
+  font-family:var(--ff-heading);font-size:0.68rem;font-weight:800;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:8px 14px;min-height:40px;
+  border-radius:var(--radius);border:none;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  transition:background var(--tr),box-shadow var(--tr);
+  white-space:nowrap;
+}
+.quote-btn:active{background:var(--yellow-dark)}
+@media(hover:hover){.quote-btn:hover{background:var(--yellow-dark);box-shadow:0 3px 10px rgba(213,168,0,.3)}}
+
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -269,7 +378,6 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:repeat(2,1fr)}
   .reviews-grid{grid-template-columns:repeat(2,1fr)}
-  .dunlop-inner{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr 1fr;gap:24px}
   .book-grid{grid-template-columns:1fr}
   .why-header{grid-template-columns:1fr}
@@ -282,7 +390,6 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .why-grid{grid-template-columns:repeat(2,1fr)}
   .reviews-grid{grid-template-columns:repeat(2,1fr)}
-  .dunlop-tyre-grid{grid-template-columns:1fr 1fr}
   .footer-inner{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
   .top-bar-item:nth-child(3){display:none}
@@ -291,7 +398,6 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
   .services-grid,.reviews-grid,.why-grid{grid-template-columns:1fr}
   .hero-actions{flex-direction:column}
   .btn--solid,.btn--outline{width:100%;justify-content:center}
-  .dunlop-tyre-grid{grid-template-columns:1fr}
   .top-bar-item:nth-child(2){display:none}
   .services-header,.reviews-header{flex-direction:column;align-items:flex-start}
 }
@@ -321,7 +427,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
   <div class="container">
     <div class="top-bar-left">
       <span class="top-bar-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 013.34 2h3a2 2 0 012 1.72c.127.96.362 1.904.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.906.338 1.85.573 2.81.7A2 2 0 0121.92 17z"/></svg>083 291 6893</span>
-      <span class="top-bar-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>hello@easyfitmentcentre.co.za</span>
+      <span class="top-bar-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@easifixfitment.co.za</span>
       <span class="top-bar-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>Mon–Fri 08:00–17:00 &nbsp;|&nbsp; Sat 08:00–13:00</span>
     </div>
     <div class="top-bar-right">
@@ -345,8 +451,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#services">Services</a>
-        <a href="#dunlop">Dunlop</a>
-        <a href="#about">About</a>
+        <a href="#why">Why Us</a>
         <a href="#reviews">Reviews</a>
         <a href="#book">Book</a>
       </nav>
@@ -366,8 +471,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
   <div class="mob-header"><span class="mob-brand">Easifix Fitment Centre</span><button class="mob-close" id="mobClose" aria-label="Close menu">✕</button>
   <a href="#services" class="mob-link">Services</a>
-  <a href="#dunlop" class="mob-link">Dunlop Tyres</a>
-  <a href="#about" class="mob-link">About</a>
+  </a>
   <a href="#reviews" class="mob-link">Reviews</a>
   <a href="#book" class="mob-link">Book</a>
   </div>
@@ -390,7 +494,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
       <div class="reveal">
         
         <h1 class="hero-h1">Your Trusted<br>Automotive &amp;<br><span>Fitment Centre.</span></h1>
-        <p class="hero-p">Wheel alignment, brakes, suspension and Dunlop tyre fitment in Soshanguve. Diagnosed right, quoted upfront, done on time. Every time.</p>
+        <p class="hero-p">Wheel alignment, brakes, suspension and tyre fitment in Soshanguve. Diagnosed right, quoted upfront, done on time. Every time.</p>
         <div class="hero-actions">
           <a href="#book" class="btn btn--solid">Book a Service</a>
           <a href="https://wa.me/27832916893?text=Hi%2C%20I%27d%20like%20a%20quote" target="_blank" rel="noopener" class="btn btn--outline">WhatsApp a Quote</a>
@@ -450,8 +554,8 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
 <!-- SERVICES STRIP -->
 <div class="services-strip" aria-hidden="true">
   <div class="strip-track">
-    <span class="strip-item">Wheel Alignment</span><span class="strip-item">Dunlop Tyre Fitment</span><span class="strip-item">Brake Service</span><span class="strip-item">Suspension Diagnostics</span><span class="strip-item">OBD-II Diagnostics</span><span class="strip-item">Road-Force Balancing</span><span class="strip-item">Shock &amp; Strut</span><span class="strip-item">General Maintenance</span>
-    <span class="strip-item">Wheel Alignment</span><span class="strip-item">Dunlop Tyre Fitment</span><span class="strip-item">Brake Service</span><span class="strip-item">Suspension Diagnostics</span><span class="strip-item">OBD-II Diagnostics</span><span class="strip-item">Road-Force Balancing</span><span class="strip-item">Shock &amp; Strut</span><span class="strip-item">General Maintenance</span>
+    <span class="strip-item">Wheel Alignment</span><span class="strip-item">Brake Service</span><span class="strip-item">Suspension Diagnostics</span><span class="strip-item">OBD-II Diagnostics</span><span class="strip-item">Road-Force Balancing</span><span class="strip-item">Shock &amp; Strut</span><span class="strip-item">General Maintenance</span>
+    <span class="strip-item">Wheel Alignment</span><span class="strip-item">Brake Service</span><span class="strip-item">Suspension Diagnostics</span><span class="strip-item">OBD-II Diagnostics</span><span class="strip-item">Road-Force Balancing</span><span class="strip-item">Shock &amp; Strut</span><span class="strip-item">General Maintenance</span>
   </div>
 </div>
 
@@ -476,42 +580,42 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
         <div class="service-num">01 — Alignment</div>
         <h3 class="service-title">3D Wheel Alignment</h3>
         <p class="service-desc">Hunter HawkEye Elite rig. Camber, caster and toe corrected to OEM spec — stops pull, uneven tyre wear and excess fuel consumption.</p>
-        <div class="service-footer"><span class="service-time">~35 min</span><a href="#book" class="service-link">Book Now →</a></div>
+        <div class="service-footer"><span class="service-time">~35 min</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="quote-btn" onclick="openQuote('3D Wheel Alignment')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Get Quote</button><a href="#book" class="service-link" onclick="document.getElementById('fs').value='3D Wheel Alignment'">Book →</a></div></div>
       </div>
       <div class="service-card reveal d1">
         <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v9M12 12l6.4 3.7"/></svg></div>
         <div class="service-num">02 — Brakes</div>
         <h3 class="service-title">Brake Service &amp; Pads</h3>
         <p class="service-desc">Full pad and disc inspection, replacement, fluid bleed and skim. Quiet stop, even feel — complete safety check before you leave.</p>
-        <div class="service-footer"><span class="service-time">~60 min</span><a href="#book" class="service-link">Book Now →</a></div>
+        <div class="service-footer"><span class="service-time">~60 min</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="quote-btn" onclick="openQuote('Brake Service and Pads')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Get Quote</button><a href="#book" class="service-link" onclick="document.getElementById('fs').value='Brake Service and Pads'">Book →</a></div></div>
       </div>
       <div class="service-card reveal d2">
         <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v18M6 7l6-4 6 4M6 17l6 4 6-4"/><line x1="6" y1="12" x2="18" y2="12"/></svg></div>
         <div class="service-num">03 — Suspension</div>
         <h3 class="service-title">Suspension Diagnostics</h3>
         <p class="service-desc">Shock test, strut check, bush and link inspection on the hoist. We find the noise, knock or sag — and give you a quote before touching anything.</p>
-        <div class="service-footer"><span class="service-time">~30 min</span><a href="#book" class="service-link">Book Now →</a></div>
+        <div class="service-footer"><span class="service-time">~30 min</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="quote-btn" onclick="openQuote('Suspension Diagnostics')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Get Quote</button><a href="#book" class="service-link" onclick="document.getElementById('fs').value='Suspension Diagnostics'">Book →</a></div></div>
       </div>
       <div class="service-card reveal d3">
         <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
         <div class="service-num">04 — Fitment</div>
-        <h3 class="service-title">Dunlop Tyre Fitment</h3>
-        <p class="service-desc">Authorised Dunlop partner. Mount, road-force balance and torque to spec. New valves as standard. Full range in stock for all vehicle types.</p>
-        <div class="service-footer"><span class="service-time">~25 min</span><a href="#book" class="service-link">Book Now →</a></div>
+        <h3 class="service-title">Tyre Fitment &amp; Balancing</h3>
+        <p class="service-desc">Professional tyre fitment, road-force balancing and torque to spec. New valves as standard. All major brands in stock for all vehicle types.</p>
+        <div class="service-footer"><span class="service-time">~25 min</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="quote-btn" onclick="openQuote('Tyre Fitment and Balancing')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Get Quote</button><a href="#book" class="service-link" onclick="document.getElementById('fs').value='Tyre Fitment and Balancing'">Book →</a></div></div>
       </div>
       <div class="service-card reveal d4">
         <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15l3-4 3 4 3-6"/></svg></div>
         <div class="service-num">05 — Diagnostics</div>
         <h3 class="service-title">Vehicle Diagnostics</h3>
         <p class="service-desc">OBD-II scan, fault clear and live data. Engine lights, ABS, traction, airbag — all explained in plain English, not just a code number.</p>
-        <div class="service-footer"><span class="service-time">~20 min</span><a href="#book" class="service-link">Book Now →</a></div>
+        <div class="service-footer"><span class="service-time">~20 min</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="quote-btn" onclick="openQuote('Vehicle Diagnostics')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Get Quote</button><a href="#book" class="service-link" onclick="document.getElementById('fs').value='Vehicle Diagnostics'">Book →</a></div></div>
       </div>
       <div class="service-card reveal d5">
         <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3-3a6 6 0 01-7.4 7.4l-6.3 6.3a2.12 2.12 0 01-3-3l6.3-6.3a6 6 0 017.4-7.4l-3 3z"/></svg></div>
         <div class="service-num">06 — Maintenance</div>
         <h3 class="service-title">General Maintenance</h3>
         <p class="service-desc">Oil and filter, battery, lights, wipers, coolant, geometry checks. Service-book stamped, parts traceable, zero surprise add-ons.</p>
-        <div class="service-footer"><span class="service-time">~90 min</span><a href="#book" class="service-link">Book Now →</a></div>
+        <div class="service-footer"><span class="service-time">~90 min</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="quote-btn" onclick="openQuote('General Maintenance')"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Get Quote</button><a href="#book" class="service-link" onclick="document.getElementById('fs').value='General Maintenance'">Book →</a></div></div>
       </div>
     </div>
   </div>
@@ -521,11 +625,6 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
      STATS BAND
 ================================================ -->
 
-
-<!-- ================================================
-     DUNLOP SECTION
-================================================ -->
->
 
 <!-- ================================================
      WHY US
@@ -544,12 +643,12 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
       <div class="why-card reveal d1"><div class="why-num">02</div><h3 class="why-title">Upfront Pricing</h3><p class="why-desc">You see the quote before we lift a spanner. Clear line items, clear total — no "while we're in there" surprises.</p></div>
       <div class="why-card reveal d2"><div class="why-num">03</div><h3 class="why-title">Expert Technicians</h3><p class="why-desc">RMI-accredited, factory-trained. The same hands work your car every visit, so we remember what was wrong last time.</p></div>
       <div class="why-card reveal d3"><div class="why-num">04</div><h3 class="why-title">Modern Equipment</h3><p class="why-desc">Hunter HawkEye alignment, road-force balancers, calibrated torque tools and live OBD-II diagnostics. Measure once, fit right.</p></div>
-      <div class="why-card reveal d4"><div class="why-num">05</div><h3 class="why-title">Dunlop Authorised</h3><p class="why-desc">Genuine Dunlop tyres in stock for all vehicle types. Fitted on professional equipment, balanced to spec every time.</p></div>
+      <div class="why-card reveal d4"><div class="why-num">05</div><h3 class="why-title">All Major Brands</h3><p class="why-desc">We stock and fit all major tyre brands. Professional equipment, road-force balanced to spec every time.</p></div>
       <div class="why-card why-rating-card reveal d5">
-        <div class="why-rating-big">4.9★</div>
-        <div class="why-stars">★★★★★</div>
-        <h3 class="why-title">Trusted by 380+ Customers</h3>
-        <p class="why-desc">Real reviews from real people in Soshanguve who trust us with their vehicles.</p>
+        <div class="why-stars" style="font-size:1.4rem;margin-bottom:8px">★★★★★</div>
+        <h3 class="why-title">Reviewed on Google</h3>
+        <p class="why-desc">Real reviews from real customers in Soshanguve. See what they say about us on Google Maps.</p>
+        <a href="https://maps.app.goo.gl/WNsUDZLZ5nnzm8CJA" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-family:var(--ff-heading);font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:#1c1917;min-height:44px;touch-action:manipulation">Read Reviews →</a>
       </div>
     </div>
   </div>
@@ -565,42 +664,33 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
         <div class="section-tag">What Customers Say</div>
         <h2 class="section-title">Real Reviews</h2>
       </div>
-      <div class="reviews-badge">
-        <div><div class="reviews-stars">★★★★★</div><div class="reviews-count">380+ Google reviews</div></div>
-        <div class="reviews-score">4.9</div>
-      </div>
+      <a href="https://maps.app.goo.gl/WNsUDZLZ5nnzm8CJA" target="_blank" rel="noopener" class="reviews-badge" style="text-decoration:none">
+        <div><div class="reviews-stars">★★★★★</div><div style="font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light)">Verified Google Reviews</div></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--yellow-dark)" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+      </a>
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Took my Polo in for a pull to the left. They showed me the alignment printout before and after — back perfectly straight in 40 minutes. Will definitely be back."</p>
-        <div class="review-author"><div class="review-avatar">TM</div><div><div class="review-name">Thabo Mokoena</div><div class="review-service">Wheel Alignment</div></div></div>
+        <p class="review-text">"Great service and friendly staff with good intention for a happy car 😃"</p>
+        <div class="review-author"><div class="review-avatar">IM</div><div><div class="review-name">Isaac Maluleka</div><div class="review-service">Local Guide · Google Review</div></div></div>
       </div>
       <div class="review-card reveal d1">
         <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Fitted Dunlop Grandtreks on my Fortuner. Road-force balanced — the difference on the N1 is night and day. Properly done, zero vibration. Very happy."</p>
-        <div class="review-author"><div class="review-avatar">LP</div><div><div class="review-name">Leigh Pretorius</div><div class="review-service">Dunlop Tyre Fitment</div></div></div>
+        <p class="review-text">"Fast, friendly and efficient. And not as expensive as some commenters say. Get there early to avoid the crowds."</p>
+        <div class="review-author"><div class="review-avatar">RN</div><div><div class="review-name">Raymond Nkwane</div><div class="review-service">Local Guide · Google Review</div></div></div>
       </div>
       <div class="review-card reveal d2">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"My Hilux had a knock over bumps. Three shops said replace everything. These guys found a loose sway-bar link. Quoted R450. Fixed same day. Honest people."</p>
-        <div class="review-author"><div class="review-avatar">SN</div><div><div class="review-name">Sibusiso Ndlovu</div><div class="review-service">Suspension Diagnostics</div></div></div>
+        <div class="review-stars">★★★★<span style="color:var(--border-mid)">★</span></div>
+        <p class="review-text">"Their prices are reasonable."</p>
+        <div class="review-author"><div class="review-avatar">EM</div><div><div class="review-name">Edward Makhubu</div><div class="review-service">Google Review</div></div></div>
       </div>
-      <div class="review-card reveal d3">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"As a woman I've been talked down to at fitment centres. Not here. They walked me through the whole inspection. Explained everything clearly. Customer for life."</p>
-        <div class="review-author"><div class="review-avatar">AM</div><div><div class="review-name">Anika Maharaj</div><div class="review-service">Full Service &amp; Check</div></div></div>
-      </div>
-      <div class="review-card reveal d4">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Fitted Michelin Sport on my E-Class. Road-force balanced, properly torqued, rims cleaned. Smooth at 180km/h. Zero sales pressure. These guys know their stuff."</p>
-        <div class="review-author"><div class="review-avatar">JF</div><div><div class="review-name">Johan F.</div><div class="review-service">Tyre Fitment &amp; Balancing</div></div></div>
-      </div>
-      <div class="review-card reveal d5">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Engine light in traffic. Scanned on the spot — MAF sensor, not the R18k catalytic converter the dealer quoted. Honest, fast, and saved me a fortune."</p>
-        <div class="review-author"><div class="review-avatar">NK</div><div><div class="review-name">Nomvula Khumalo</div><div class="review-service">Vehicle Diagnostics</div></div></div>
-      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:32px">
+      <a href="https://maps.app.goo.gl/WNsUDZLZ5nnzm8CJA" target="_blank" rel="noopener" class="btn btn--solid" style="display:inline-flex">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        See All Our Reviews on Google
+      </a>
     </div>
   </div>
 </section>
@@ -625,7 +715,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
           <div class="form-body">
             <form id="bookingForm" novalidate>
               <div class="form-row">
-                <div class="form-group"><label for="fn">Full Name *</label><input type="text" id="fn" name="name" placeholder="e.g. Thabo Mokoena" autocomplete="name" required></div>
+                <div class="form-group"><label for="fn">Full Name *</label><input type="text" id="fn" name="name" placeholder="Your full name" autocomplete="name" required></div>
                 <div class="form-group"><label for="fp">Mobile Number *</label><input type="tel" id="fp" name="mobile" placeholder="e.g. 082 123 4567" autocomplete="tel" required></div>
               </div>
               <div class="form-group"><label for="fv">Your Vehicle *</label><input type="text" id="fv" name="vehicle" placeholder="e.g. 2019 VW Polo 1.0, Toyota Hilux 2.8 GD6" required></div>
@@ -635,7 +725,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
                   <option>3D Wheel Alignment</option>
                   <option>Brake Service (Pads / Discs)</option>
                   <option>Suspension Diagnostics</option>
-                  <option>Dunlop Tyre Fitment &amp; Balancing</option>
+                  <option>Tyre Fitment &amp; Balancing</option>
                   <option>Vehicle Diagnostics (OBD-II)</option>
                   <option>General Maintenance</option>
                   <option>Not sure — diagnose for me</option>
@@ -680,7 +770,7 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
             </div>
             <div class="contact-row">
               <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-              <div><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:hello@easyfitmentcentre.co.za">hello@easyfitmentcentre.co.za</a></div></div>
+              <div><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:info@easifixfitment.co.za">info@easifixfitment.co.za</a></div></div>
             </div>
             <div class="contact-row">
               <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
@@ -726,23 +816,79 @@ footer{background:var(--bg-dark);padding:clamp(36px,6vw,68px) 0 0}
           <div class="footer-logo-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><line x1="12" y1="2.5" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="8.5" y2="12"/><line x1="15.5" y1="12" x2="21.5" y2="12"/></svg></div>
           Easifix Fitment Centre
         </div>
-        <p class="footer-brand-text">Independent automotive specialists in Soshanguve, Gauteng. Wheel alignment, brakes, suspension, Dunlop tyre fitment and diagnostics. Measured, explained, done right.</p>
+        <p class="footer-brand-text">Independent automotive specialists in Soshanguve, Gauteng. Wheel alignment, brakes, suspension, tyre fitment and diagnostics. Measured, explained, done right.</p>
         <div class="footer-social">
           <a href="https://www.facebook.com/people/EasiFix-Fitment-Center/61575009537376/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
           <a href="https://wa.me/27832916893" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
           <a href="https://www.google.com/maps?q=1022+Block+H+M43+Mokhetle+Drive+Soshanguve" target="_blank" rel="noopener" aria-label="Google Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
         </div>
       </div>
-      <div class="footer-col"><h4>Services</h4><a href="#services">Wheel Alignment</a><a href="#services">Brake Service</a><a href="#services">Suspension Diagnostics</a><a href="#services">Dunlop Tyre Fitment</a><a href="#services">Vehicle Diagnostics</a><a href="#services">General Maintenance</a></div>
-      <div class="footer-col"><h4>Contact</h4><p>1022 Block H, M43 Mokhetle Drive</p><p>Soshanguve · Gauteng · 0152</p><a href="tel:+27832916893">083 291 6893</a><a href="mailto:hello@easyfitmentcentre.co.za">hello@easyfitmentcentre.co.za</a></div>
+      <div class="footer-col"><h4>Services</h4><a href="#services">Wheel Alignment</a><a href="#services">Brake Service</a><a href="#services">Suspension Diagnostics</a><a href="#services">Tyre Fitment &amp; Balancing</a><a href="#services">Vehicle Diagnostics</a><a href="#services">General Maintenance</a></div>
+      <div class="footer-col"><h4>Contact</h4><p>1022 Block H, M43 Mokhetle Drive</p><p>Soshanguve · Gauteng · 0152</p><a href="tel:+27832916893">083 291 6893</a><a href="mailto:info@easifixfitment.co.za">info@easifixfitment.co.za</a></div>
       <div class="footer-col"><h4>Hours</h4><p>Mon – Fri: 08:00 – 17:00</p><p>Saturday: 08:00 – 15:00</p><p>Sunday: 08:00 – 13:00</p></div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Easifix Fitment Centre · RMI Accredited · Authorised Dunlop Partner · All rights reserved.</p>
+      <p class="footer-copy">© 2026 Easifix Fitment Centre · RMI Accredited · All rights reserved.</p>
       
     </div>
   </div>
 </footer>
+
+
+<!-- ── QUOTE MODAL ──────────────────────────────────── -->
+<div class="modal-overlay" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h3 id="modalTitle">Request a Quote</h3>
+        <div class="modal-service-tag" id="modalServiceTag">Service</div>
+      </div>
+      <button class="modal-close-btn" onclick="closeQuote()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="quoteFormWrap">
+        <!-- WhatsApp quick quote -->
+        <button class="modal-wa-btn" id="waQuoteBtn" onclick="sendWaQuote()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Quote — Instant Reply
+        </button>
+        <div class="modal-divider">or fill in the form</div>
+        <!-- Quote form -->
+        <form id="quoteForm" novalidate>
+          <input type="hidden" id="qService" name="service">
+          <div class="form-group">
+            <label for="qName">Your Name *</label>
+            <input type="text" id="qName" name="name" placeholder="Your full name" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="qPhone">Mobile Number *</label>
+            <input type="tel" id="qPhone" name="mobile" placeholder="e.g. 082 123 4567" autocomplete="tel" required>
+          </div>
+          <div class="form-group">
+            <label for="qVehicle">Your Vehicle *</label>
+            <input type="text" id="qVehicle" name="vehicle" placeholder="e.g. Toyota Hilux 2020, VW Polo 2018" required>
+          </div>
+          <div class="form-group">
+            <label for="qNotes">Any Extra Details <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-light)">(optional)</span></label>
+            <textarea id="qNotes" name="notes" placeholder="Tyre size, symptoms, anything that helps us quote accurately…" style="min-height:72px;resize:vertical"></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="qSubmit" style="margin-top:0">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+            Send Quote Request
+          </button>
+          <p class="form-note" style="margin-top:8px">We'll call or WhatsApp you back within 30 minutes.</p>
+        </form>
+      </div>
+      <!-- Success state -->
+      <div class="quote-success" id="quoteSuccess">
+        <div class="quote-success-icon">✅</div>
+        <h4>Quote Request Sent!</h4>
+        <p>We'll call or WhatsApp you back shortly with a price.</p>
+        <button onclick="closeQuote()" style="margin-top:16px;font-family:var(--ff-heading);font-size:0.78rem;font-weight:700;color:var(--yellow-dark);background:none;border:none;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;touch-action:manipulation">Close ✕</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -769,7 +915,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)closeN
 
 // Active nav
 var nls=document.querySelectorAll('.nav-links a');
-var secs=['services','dunlop','why','reviews','book'].map(function(id){return document.getElementById(id);}).filter(Boolean);
+var secs=['services','why','reviews','book'].map(function(id){return document.getElementById(id);}).filter(Boolean);
 var nio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)nls.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id);});});},{threshold:0.3});
 secs.forEach(function(s){nio.observe(s);});
 
@@ -805,6 +951,112 @@ if(form){
   });
 }
 function done(){if(fbody)fbody.style.display='none';if(fsuc){fsuc.classList.add('show');fsuc.scrollIntoView({behavior:'smooth',block:'center'});}}
+
+// ── Quote Modal ──────────────────────────────────────
+var currentService = '';
+var quoteModal = document.getElementById('quoteModal');
+var modalServiceTag = document.getElementById('modalServiceTag');
+var qServiceInput = document.getElementById('qService');
+
+function openQuote(serviceName) {
+  currentService = serviceName;
+  if (modalServiceTag) modalServiceTag.textContent = serviceName;
+  if (qServiceInput) qServiceInput.value = serviceName;
+  if (quoteModal) {
+    quoteModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+  }
+}
+
+function closeQuote() {
+  if (quoteModal) {
+    quoteModal.classList.remove('open');
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    // Reset form after close
+    setTimeout(function() {
+      var qf = document.getElementById('quoteForm');
+      var qs = document.getElementById('quoteSuccess');
+      var qw = document.getElementById('quoteFormWrap');
+      if (qf) qf.reset();
+      if (qs) qs.classList.remove('show');
+      if (qw) qw.style.display = '';
+    }, 300);
+  }
+}
+
+function sendWaQuote() {
+  var name    = document.getElementById('qName')    ? document.getElementById('qName').value    : '';
+  var vehicle = document.getElementById('qVehicle') ? document.getElementById('qVehicle').value : '';
+  var msg = 'Hi Easifix Fitment Centre, I would like a quote for: ' + currentService
+          + (vehicle ? '%0AVehicle: ' + encodeURIComponent(vehicle) : '')
+          + (name    ? '%0AName: '    + encodeURIComponent(name)    : '');
+  window.open('https://wa.me/27832916893?text=' + msg, '_blank');
+}
+
+// Close modal on overlay click
+if (quoteModal) {
+  quoteModal.addEventListener('click', function(e) {
+    if (e.target === quoteModal) closeQuote();
+  });
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && quoteModal && quoteModal.classList.contains('open')) closeQuote();
+});
+
+// Quote form submit
+var quoteForm = document.getElementById('quoteForm');
+if (quoteForm) {
+  quoteForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var ok = true;
+    quoteForm.querySelectorAll('[required]').forEach(function(f) {
+      if (!f.value.trim()) {
+        ok = false;
+        f.style.borderColor = '#dc2626';
+        f.style.boxShadow = '0 0 0 3px rgba(220,38,38,.1)';
+        f.addEventListener('input', function() { f.style.borderColor=''; f.style.boxShadow=''; }, { once: true });
+      }
+    });
+    if (!ok) return;
+
+    var qSub = document.getElementById('qSubmit');
+    if (qSub) { qSub.disabled = true; qSub.textContent = 'Sending...'; }
+
+    var fd = new FormData(quoteForm);
+    fd.set('service', 'QUOTE REQUEST: ' + currentService);
+
+    // Build WhatsApp fallback
+    var wa = 'Hi Easifix Fitment Centre, quote request:%0AService: ' + encodeURIComponent(currentService)
+           + '%0AName: '    + encodeURIComponent(fd.get('name'))
+           + '%0AMobile: '  + encodeURIComponent(fd.get('mobile'))
+           + '%0AVehicle: ' + encodeURIComponent(fd.get('vehicle'))
+           + (fd.get('notes') ? '%0ADetails: ' + encodeURIComponent(fd.get('notes')) : '');
+
+    try {
+      var res = await fetch('https://formspree.io/f/xdknjwlq', {
+        method: 'POST', body: fd, headers: { Accept: 'application/json' }
+      });
+      if (res.ok) { showQuoteSuccess(); return; }
+    } catch(_) {}
+
+    window.open('https://wa.me/27832916893?text=' + wa, '_blank');
+    showQuoteSuccess();
+  });
+}
+
+function showQuoteSuccess() {
+  var qw = document.getElementById('quoteFormWrap');
+  var qs = document.getElementById('quoteSuccess');
+  if (qw) qw.style.display = 'none';
+  if (qs) qs.classList.add('show');
+}
+
 })();
 </script>
 </body>
